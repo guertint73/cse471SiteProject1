@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Subtractive Instrument</title>
+    <title>Drum Instrument</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -11,12 +11,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
     integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+    <style media="screen">
+      p {
+        font-size:16px;
+      }
+      li {
+        font-size: 16px;
+      }
+      .container-fluid{
+        padding-bottom: 10px;
+      }
+    </style>
+
   </head>
   <body>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Subtractive Instrument</a>
+          <a class="navbar-brand" href="#">Drum Instrument</a>
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="../">HomePage</a></li>
@@ -24,26 +36,118 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="max-width: 1200px;">
       <div class="row">
         <div class="col-md-6 text-center">
-          <h2>About Us</h2>
+          <h2>Component Owner: Ciaron Hamilton</h2>
+          <h4>XML Score for demo piece</h4>
+          <img src="Xmlphoto.png" class="img-thumbnail" alt="XML drum score" height="400" width="400">
+          <br>
+          <a href="project1-subtractive.score" style="font-size: 16px;">View XML here</a>
         </div>
 
-        <div class="col-md-6 text-center">
+        <div class="col-md-6">
+          <h2>Component Details</h2>
+          <p>
+            The percussion function uses a combination of functions to
+            manipulate a waveform via arithmetically adding/multiplying each output.
+            This allows sound generation to be executed during play time, rather
+            than calling in a wavetable with preset values. Such functions are
+            separated into <strong>four groups:</strong>
+          </p>
+          <br>
+          <p>
+            Note: Reson filter functions are not included in this listing since
+            these functions were borrowed from subtractive:
+            <ul>
+              <li>Adders, returns wave values:</li>
+              <li>Sinewave</li>
+              <li>Squarewave</li>
+              <li>Saw wave</li>
+              <li>Trianglewave</li>
+              <li>Sinenoise* (experimental)</li>
+              <li>Multipliers, returns amplitude values: (note: each ADSR element calls Fader)</li>
+              <ul>
+                <li>Fader (which increments/decrements the sounds amplitude)</li>
+                <li>Attack</li>
+                <li>Decay</li>
+                <li>Sustain</li>
+                <li>Release</li>
+              </ul>
+              <li>ADSR (combination of each ADSR function above)</li>
+              <li>Noise, returns random values from -1 to 1: ○ Whitenoise</li>
+              <li>Pitch Changer, void function that changes m_pitch: ○ Changepitch</li>
+            </ul>
+          </p>
+          <br>
+          <p>
+            Each can then be varied with time to create various percussion sounds.
+            To vary the times when a function is called, each function obtains a
+            start and stop time value where if m_time is within that timeframe,
+            the function will give a output corresponding to that function. If
+            m_time is not in the timeframe, the function will return either: 0
+            for adders, 1 for multipliers/noise.
+          </p>
+          <p>
+            ADSR also has four time values, m_atime, m_dtime, m_stime,
+            and m_rtime, which sets the times where each element from
+            ADSR can be used. ADSR also has two amplitude values, m_aamp and
+            m_samp, which determines the amplitudes of the points in between
+            AD and SR respectively. A couple useful function parameters would
+            be m_amult, which varies the amplitude of the outputs for adder
+            functions, and m_pmult, which varies pitch for adder functions.
+          </p>
+          <p>
+            Other functions include Whitenoise and Changepitch. Whitenoise is
+            used in conjunction with the snare drums and the highhat to properly
+            simulate their sounds. Whitenoise also utilizes a reson filter so it
+            may scale with pitch. Changepitch is used for swept fundamentals. This
+            can be used to both simulate how vibrations in snares/toms/kicks drop
+            over time and for other fun effects.
+          </p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 text-center">
-          <h2>Forgotten Bands</h2>
+          <h2>Grading Criteria Achieved</h2>
+          <h4>The percusion component of this assignment follows  every  piece of the rubric:</h4>
+          <ol class="list-inline">
+            <li>10 - <strong>Waveform playback from tables</strong></li>
+            <li>20 - <strong>Envelope generation</strong></li>
+            <li>30 - <strong>Polyphony</strong></li>
+            <li>35 - <strong>Varying pitch playback from tables</strong></li>
+            <li>40 - <strong>At least 20 distinct drum sounds</strong></li>
+            <li>50 - <strong>Synthesized drum</strong></li>
+          </ol>
         </div>
 
         <div class="col-md-6 text-center">
-          <h2>Bandcamp Artist of the Week</h2>
+          <h2>Playing a sound</h2>
+          <p>
+            For a percussion sound to be played, the XML file should first indicate
+            that the instrument="Drums" and the type of percussion to be played
+            within each note (ex: type="snare01"). When the function is called,
+            an if/else chain is used to select which instrument. On the first frame
+            and only the first frame, default values are each ADSR time/amp is set,
+            as well as the default pitch.
+          </p>
+
+          <p>
+            Afterwards, the amplitude for each frame is calculated using the
+            various functions discussed above. This value is sent to both channels
+            of each frame. Another option is available to allow different playbacks
+            for each LR channel.
+          </p>
+          <p>
+            After calculating the amplitude of a single frame, an AR function
+            (from CInstrumentEffects) is called to ensure no pops are made at the
+            beginning/end of output (which could have happened if m_rtime &gt; m_duration).
+            Finally, m_time increases for each sample period. This frame will but giving
+            to either sound output and/or file output.
+          </p>
         </div>
       </div>
-
     </div>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
