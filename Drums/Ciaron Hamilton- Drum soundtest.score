@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<score bpm="120" beatspermeasure="4">
+   <instrument instrument="Drums">
+      <note measure="1" beat="1" duration="1.9" note="C4" type="snare01"/>
+      <note measure="1" beat="3" duration="1.9" note="C4" type="snare02"/> 
+      <note measure="2" beat="1" duration="1.9" note="C4" type="snare03"/>
+      <note measure="2" beat="3" duration="1.9" note="C4" type="snare04"/>
+	  
+	  <note measure="3" beat="1" duration="1.9" note="C3" type="tom01"/>
+      <note measure="3" beat="3" duration="1.9" note="C3" type="tom02"/>
+      <note measure="4" beat="1" duration="1.9" note="C3" type="tom03"/>
+      <note measure="4" beat="3" duration="1.9" note="C3" type="tom04"/>
+	  <note measure="5" beat="1" duration="1.9" note="C3" type="tom05"/>
+	  <note measure="5" beat="3" duration="1.9" note="C3" type="tom06"/>
+	  <note measure="6" beat="1" duration="1.9" note="C3" type="tom07"/>
+	  
+	  <note measure="6" beat="3" duration="1.9" note="C4" type="kick01"/>
+      <note measure="7" beat="1" duration="1.9" note="C4" type="kick02"/>
+      <note measure="7" beat="3" duration="1.9" note="C4" type="kick03"/>
+	  <note measure="8" beat="1" duration="1.9" note="C4" type="kick04"/>
+	  <note measure="8" beat="3" duration="1.9" note="C4" type="kick05"/>
+	  <note measure="9" beat="1" duration="1.9" note="C4" type="kick06"/>
+	  
+      <note measure="9" beat="3" duration="1.9" note="C4" type="highhatdown01"/>
+	  <note measure="10" beat="1" duration="1.9" note="C4" type="highhatdown02"/>
+	  
+	  <note measure="10" beat="3" duration="1.9" note="C4" type="highhatup01"/>
+	  <note measure="11" beat="1" duration="1.9" note="C4" type="highhatup02"/>
+	  <note measure="11" beat="3" duration="1.9" note="C4" type="crash01"/>
+	  
+	  
+	  <note measure="12" beat="1" duration="1.9" note="C3" type="tom01"/>
+	  <note measure="12" beat="2" duration="1.9" note="D3" type="tom01"/>
+	  <note measure="12" beat="3" duration="1.9" note="E3" type="tom01"/>
+	  <note measure="12" beat="4" duration="1.9" note="F3" type="tom01"/>
+	  <note measure="13" beat="1" duration="1.9" note="C2" type="tom01"/>
+	  <note measure="13" beat="2" duration="1.9" note="D2" type="tom01"/>
+	  <note measure="13" beat="3" duration="1.9" note="E2" type="tom01"/>
+	  <note measure="13" beat="4" duration="1.9" note="F2" type="tom01"/>
+	  
+	  
+	  <note measure="14" beat="3" duration="1.9" note="C3" type="tom01"/>
+	  <note measure="14" beat="3" duration="1.9" note="C3" type="tom02"/>
+	  <note measure="14" beat="3" duration="1.9" note="C3" type="tom03"/>
+	  <note measure="14" beat="3" duration="1.9" note="C3" type="tom04"/>
+	  <note measure="15" beat="1" duration="1.9" note="C3" type="crash01"/>
+	  <note measure="15" beat="2" duration="1.9" note="C3" type="tom01"/>
+	  <note measure="15" beat="3" duration="1.9" note="C3" type="crash01"/>
+	  <note measure="15" beat="4" duration="1.9" note="C3" type="tom01"/>
+	  <note measure="16" beat="1" duration="1.9" note="C3" type="crash01"/>
+	  <note measure="16" beat="2" duration="1.9" note="C3" type="crash01"/>
+	  
+	  </instrument>
+</score>
