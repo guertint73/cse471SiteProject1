@@ -41,19 +41,37 @@
         <div class="col-md-6 text-center">
           <h2>Component Owner: Jack Smith</h2>
           <h4>XML Score for my demo piece</h4>
-          <img src="Xmlphoto.png" class="img-thumbnail" alt="XML score" height="400" width="400">
+          <img src="Xmladditive.png" class="img-thumbnail" alt="XML score" height="400" width="400">
           <br>
-          <a href="project1-subtractive.score" style="font-size: 16px;">View XML here</a>
+          <a href="additiveDemoScore.score" style="font-size: 16px;">View XML here</a>
         </div>
 
         <div class="col-md-6 text-center">
           <h2>Component Details</h2>
           <p>
+            This component implements a simple wavetable based additive synthesizer.
+            This type of synthesizer creates sound by adding together many sinusoids to
+            form complex tones. My implementation allows users to specify the amplitude
+            of as many harmonics as they desire.
 
+            To enable crossfading between different sound specifications,
+            CAdditiveInstrument contains two CAdditiveWave components which generate the
+            additive sinusoid for the beginning and and of the note. The output of these
+            two components is mixed linearly based on the time since the start of a
+            note.
           </p>
           <br>
           <p>
+            For efficiency reasons, CAdditiveWave implements playback via a one-cycle
+            wavetable which dramatically improves performance. This complicates vibrato
+            somewhat, and this feature is implemented via oscillating playback speed and
+            linear interpolation to synthesize new frames as needed.
 
+            The sound of a note is specified by simply adding two attributes to the note
+            tag. "soundstart" and "soundend" specify the amplitudes of the harmonics at
+            the beginning and end of the note respectively. The values of these
+            attributes is simply a spaces separated list of the amplitudes desired. For
+            examples, see the XML.
           </p>
           <br>
           <p>
@@ -67,33 +85,55 @@
           <h2>Grading Criteria Achieved</h2>
           <h4>The grading elements supported are:</h4>
           <ol class="list-inline">
-            <li><strong>1. </strong>Waveform playback from tables</li>
-            <li><strong>2. </strong>Varying pitch playback from tables</li>
-            <li><strong>3. </strong>Envelope Generation</li>
+            <li><strong>1. </strong>Sinusoid playback on demand</li>
+            <li><strong>2. </strong>Definition of All harmonics (as many as desired by the user)</li>
+            <li><strong>3. </strong>Envelope Generation (via simple ASR)</li>
             <li><strong>4. </strong>Polyphony</li>
             <li><strong>5. </strong>Reson Implementation</li>
-            <li><strong>6. </strong>Filter Envelopes (sweeping the Moog sound)</li>
+            <li><strong>6. </strong>Vibrato</li>
           </ol>
         </div>
 
-        <div class="col-md-6 text-center">
+        <div class="col-md-6">
           <h2>Specifications implemented</h2>
-          <p><strong></strong>
-          </p>
-          <p><strong></strong>
-            <strong></strong>
-          </p>
-          <p><strong></strong>
-          </p>
-          <p><strong></strong>
-
-          </p>
-          <p><strong></strong>
-
-          </p>
-          <p><strong>Filter Envelopes: </strong>
-
-          </p>
+          <ul>
+            <li><strong>Sinusoid playback on demand:</strong>
+              <ul>
+                <li>Sequencer correctly creates CAdditiveInstrument objects which create
+                sinusoidal sounds.</li>
+              </ul>
+            </li>
+            <li><strong>Definition of All harmonics (as many as desired by the user):</strong>
+              <ul>
+                The user can specify the amplitude of as many harmonics as they want in
+                both the soundstart and soundend attributes. If they wish to only set
+                even or odd harmonics, they can simply set the others to 0.
+              </ul>
+            </li>
+            <li><strong>Envelope Generation (via simple ASR):</strong>
+              <ul>
+                <li>Sounds both fade in and out.</li>
+              </ul>
+            </li>
+            <li><strong>Polyphony:</strong>
+              <ul>
+                <li>Multiple CAdditiveInstruments can be active at a time.</li>
+              </ul>
+            </li>
+            <li><strong>Sound cross-fading:</strong>
+              <ul>
+                <li>CAdditiveInstrument fades between two CAdditiveWave outputs over the
+                course of a note. The sounds of each of these are user specified in the
+                XML.</li>
+              </ul>
+            </li>
+            <li><strong>Vibrato:</strong>
+              <ul>
+                <li>CAdditiveWaves play with vibrato by modulating playback speed and using
+                linear interpolation when necessary to synthesize new frames.</li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
 
