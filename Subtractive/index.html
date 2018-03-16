@@ -41,9 +41,9 @@
         <div class="col-md-6 text-center">
           <h2>Component Owner: Tim Guertin</h2>
           <h4>XML Score for my demo piece</h4>
-          <img src="Xmlphoto.png" class="img-thumbnail" alt="XML score" height="400" width="400">
+          <img src="xmlsubtractivephoto.png" class="img-thumbnail" alt="XML score" height="400" width="400">
           <br>
-          <a href="project1-subtractive.score" style="font-size: 16px;">View XML here</a>
+          <a href="timGuertinSubtractiveDemo.score" style="font-size: 16px;">View XML here</a>
         </div>
 
         <div class="col-md-6 text-center">
@@ -83,7 +83,8 @@
             of wave to put into the wave table (i.e. "triangle", or "square"). It also
             contains an attack attribute for ADSR, and a maxFilter attribute that
             sets the max normalized frequency for the reson filter. The varying pitch
-            playback does not have an XML tag as it is system specific.
+            playback has vibrato frequency and vibrato depth attributes for each note,
+            so the vibrato can be dynamically changed. 
           </p>
         </div>
       </div>
@@ -111,7 +112,7 @@
             In <strong>CSubtractiveWave::Generate, </strong> I am generating interpolated
             samples from samples selected from the wavetable. I make the playback speed
             a sinusoidal function, and index m_wavetable accordingly. Per TA suggestion,
-            I treated Varying Pitch Playback as a vibrato effect. 
+            I treated Varying Pitch Playback as a vibrato effect.
           </p>
           <p><strong>Envelope Generation: </strong>ADSR present to allow for
             smooth transition between notes. XML contains attack value
