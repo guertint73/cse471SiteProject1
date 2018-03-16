@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Subtractive Instrument</title>
+    <title>Effects Instrument</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -11,12 +11,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
     integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+    <style media="screen">
+      p {
+        font-size:16px;
+      }
+      li {
+        font-size: 16px;
+      }
+      .container-fluid{
+        padding-bottom: 10px;
+      }
+    </style>
+
   </head>
   <body>
     <nav class="navbar navbar-default">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#">Effects</a>
+          <a class="navbar-brand" href="#">Effects Instrument</a>
         </div>
         <ul class="nav navbar-nav">
           <li class="active"><a href="../">HomePage</a></li>
@@ -24,23 +36,74 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid" style="max-width: 1200px;">
       <div class="row">
         <div class="col-md-6 text-center">
-          <h2>About Us</h2>
+          <h2>Component Owner: Travis Leffel</h2>
+          <h4>XML Score for demo piece</h4>
+          <img src="demo-effect-xml.png" class="img-thumbnail" alt="XML score" height="400" width="400">
+          <br>
+          <a href="demo.score" style="font-size: 16px;">View XML here</a>
         </div>
 
         <div class="col-md-6 text-center">
+          <h2>Component Details</h2>
+          <p>
+            This component implements an effects module. In each instrument’s
+            XML tag, an effect for that instrument is specified by name. The
+            effect is converted to a number and is stored as a member variable
+            in the CInstrument object. This is then processed when the frames
+            are created in CSynthesizer. The possible effects for instruments
+            are Chorus, Flange, and Reverberation. Each of these effects are
+            classes in the code, and are defined as objects in CSynthesizer.
+            They each use the function Process(frameIn, frameOut, time) to
+            perform the effect processing.
+          </p>
+          <br>
+          <p>
+            Chorus and Flange both calculate a DELAY value based on the current
+            time of the score. The Chorus delay amount varies from 20 to 30
+            milliseconds at a sinusoidal rate of .25Hz. The Flange delay amount
+            varies from 2 to 10 milliseconds at a sinusoidal rate of .25Hz. An
+            input queue is used to store the input values needed to achieve
+            these effects. Reverb has a set delay length of .238 milliseconds.
+            The delayed output frame is multiplied by .5 then added to the
+            current input frame, making the sound echo and fade over time.
+            An output queue is used to store the output values needed to
+            achieve this effect.
+          </p>
+          <br>
+          <p>
+            NoiseGate samples the previous 100 frames and checks if any of them
+             are above the threshold value. If this is found to be true, the
+             sound is allowed through the noise gate. If this is false, the
+             sound is reduced to 0 and nothing passes through the gate. A
+             queue was used to store the samples that were compared to the
+             threshold.
+          </p>
+          <p>
+
+          </p>
         </div>
       </div>
 
       <div class="row">
         <div class="col-md-6 text-center">
-          <h2>Forgotten Bands</h2>
+          <h2>Grading Criteria Achieved</h2>
+          <h4>The grading elements supported are:</h4>
+          <ol class="list-inline">
+            <li><strong>1. </strong>Waveform playback from tables</li>
+            <li><strong>2. </strong>Varying pitch playback from tables</li>
+            <li><strong>3. </strong>Envelope Generation</li>
+            <li><strong>4. </strong>Polyphony</li>
+            <li><strong>5. </strong>Reson Implementation</li>
+            <li><strong>6. </strong>Filter Envelopes (sweeping the Moog sound)</li>
+          </ol>
         </div>
 
         <div class="col-md-6 text-center">
-          <h2>Bandcamp Artist of the Week</h2>
+          <h2>Specifications implemented</h2>
+          
         </div>
       </div>
 
