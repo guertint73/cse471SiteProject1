@@ -49,11 +49,20 @@
         <div class="col-md-6 text-center">
           <h2>Component Details</h2>
           <p>
-
+            This component simulates the sound of a Hammond B3 Organ,
+            an instrument that utilizes tonewheels (metal wheels with magnets)
+            that spin and trigger a small pickup. This essentially generates a sinewave.
+            The Hammond Organ utilizes several of these tonewheels to generate
+            different harmonics, drawbars to adjust the gain of each harmonic,
+            and several practical effects including Leslie Speakers, Vibrato, and Percussion.
           </p>
           <br>
           <p>
-
+            The implementation of this instrument is heavily based on the
+            generic implementation of ToneInstrument, where a score is read
+            in through an XML file, the details are parsed, the respective
+            sine waves are generated with the respective effects, and all the
+            sinewaves are output to the audio stream.
           </p>
           <br>
           <p>
@@ -70,28 +79,83 @@
           <h2>Grading Criteria Achieved</h2>
           <h4>The grading elements supported are:</h4>
           <ol class="list-inline">
-            <li><strong>1. </strong>Component passes audio</li>
-            <li><strong>2. </strong>1 Effect</li>
-            <li><strong>3. </strong>3 Effects</li>
-            <li><strong>4. </strong>Controllable Effects Send</li>
-            <li><strong>5. </strong>4 Effects</li>
+            <li><strong>1. </strong>Sound wave generation through the use of Tone Wheels</li>
+            <li><strong>2. </strong>Gain adjustment through Drawbars</li>
+            <li><strong>3. </strong>Leslie Speaker simulated through Tremolo effect</li>
+            <li><strong>4. </strong>Envelope generation through Attack and Release</li>
+            <li><strong>5. </strong>Vibrato effect</li>
+            <li><strong>6. </strong>Percussion effect</li>
           </ol>
         </div>
 
         <div class="col-md-6 text-center">
           <h2>Specifications implemented</h2>
-          <h4>Component Passes Audio:</h4>
-          <p>All audio is checked for an indicated
-            effect. If no effect is indicated, there is no change to the audio.
-            If a specific effect is indicated, only that effect is applied.
+          <h4>Sound wave generation through the use of Tone Wheels:</h4>
+          <p>
+            The organ is heavily based on the original ToneInstrument, but with
+            several key components expanded upon. The first being the Tonewheels.
+            Whereas ToneInstrument only utilizes a singular sine wave, the Hammond
+            organ essentially utilized nine different sine waves, which act as
+            multiples of the harmonic. To recreate this, the organ utilizes an
+            array of sine waves, which are all independently generated. This
+            allows for modular control over each harmonic through the use of drawbars.
           </p>
-          <h4>1 Effect: Chorus Effect</h4>
-          <h4>3 Effects: Flange Effect and Reverberation</h4>
-          <h4></h4>
-          <h4>Controllable Effects Sends:</h4>
-          <p>Effect for instrument can be specified in the XML score</p>
-          <h4>4 Effects: Noise Gating.</h4>
-          <p>Prevents sound that falls below a threshold</p>
+          <h4>Gain adjustment through Drawbars</h4>
+          <p>
+            Each drawbar’s position is recorded in the score file and is passed
+            into the OrganInstrument as an array of integers. This is then matched
+            up with an array containing the decibel value of the drawbar’s gain
+            settings. Utilizing these two arrays, it is possible to increment through
+            the ToneWheels array and apply a decibel-based gain to each independent
+            sine wave that comprises the OrganInstrument.
+          </p>
+          <h4>Leslie Speaker simulated through Tremolo effect</h4>
+          <p>
+            The Leslie Speaker for this implementation essentially acts as a tremolo,
+            varying the amplitude of the output. This is accomplished by a short
+            tremolo function prior to the audio output. The function takes in a
+            depth and frequency, and generates a sine wave that is relative to time.
+            This is then multiplied to the output similar to the gain.
+          </p>
+          <h4>Envelope generation through Attack and Release:</h4>
+          <p>
+            The envelope generator was implemented as a simple attack/release
+            function that ramps in and out the gain for the first and last
+            couple milliseconds. This avoids creating notes that ‘pop’ when played.
+          </p>
+          <h4>Vibrato Effect</h4>
+          <p>
+            The vibrato effect works by varying the frequency of the generated sine wave.
+             To implement this a secondary class was created based on the original
+             SineWave class. Within this new ‘OrganWave’ class, a few additional
+             variables were created. To properly modulate the vibrato frequency
+             a variable was created as a function of the initial frequency.
+             This ensured the vibrato frequency was always 1% of the initial
+             frequency, regardless of what that initial frequency was set to.
+             <br>
+             <br>
+             The other variables were a relatively straightforward implementation
+             of vibrato. For example, the instantaneous frequency is a sum of the
+             initial frequency, plus the depth relative to the initial frequency
+             multiplied by a sine wave that varies with time and the aforementioned
+             vibrato frequency.
+             <br>
+             <br>
+             An enable toggle selects between the original
+             increment value, and an increment value based on the instantaneous
+             vibrato-modulated frequency.
+          </p>
+          <h4>Percussion Effect</h4>
+          <p>
+            The percussion was a relatively straightforward implementation.
+            Within the OrganInstrument, if percussion is enabled and time is
+            less than a few milliseconds, the frequency is set to 3 times the
+            initial input frequency. This gives an extra brightness to the
+            beginning of each note.
+            <br>
+            <br>
+            All of these settings can be configured and/or toggled through the input score file.
+          </p>
         </div>
       </div>
 
