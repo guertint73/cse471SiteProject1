@@ -3,5 +3,13 @@
    <instrument instrument="AdditiveInstrument">
       <note measure="1" beat="1" duration="8" note="C4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
 	  <note measure="2" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
+	  <note measure="3" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
+	  <note measure="4" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
+	  <note measure="5" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
+	  <note measure="6" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
+	  <note measure="7" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
+	  <note measure="8" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
+	  <note measure="9" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
+	  <note measure="10" beat="1" duration="8" note="F4" soundstart="1 .5 .25 .125" soundend=".125 .25 .5 1"/>
    </instrument>
 </score>
